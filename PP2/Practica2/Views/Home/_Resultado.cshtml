@@ -1,0 +1,91 @@
+@model Practica2.Models.Binario
+
+@if (!string.IsNullOrEmpty(Model?.A) && !string.IsNullOrEmpty(Model?.B))
+{
+    <h3>Tabla de resultados</h3>
+    <table class="table table-bordered table-striped text-center align-middle">
+        <thead>
+            <tr>
+                <th>Operación</th>
+                <th>Binario</th>
+                <th>Octal</th>
+                <th>Decimal</th>
+                <th>Hex</th>
+            </tr>
+        </thead>
+        @{
+            var aValue = Model.A;
+            var aDecimal = !string.IsNullOrEmpty(aValue) ? Convert.ToInt32(aValue, 2) : 0;
+
+            var bValue = Model.B;
+            var bDecimal = !string.IsNullOrEmpty(bValue) ? Convert.ToInt32(bValue, 2) : 0;
+
+            var andValue = ViewData["AND"] as string;
+            var andDecimal = !string.IsNullOrEmpty(andValue) ? Convert.ToInt32(andValue, 2) : 0;
+
+            var orValue = ViewData["OR"] as string;
+            var orDecimal = !string.IsNullOrEmpty(orValue) ? Convert.ToInt32(orValue, 2) : 0;
+
+            var xorValue = ViewData["XOR"] as string;
+            var xorDecimal = !string.IsNullOrEmpty(xorValue) ? Convert.ToInt32(xorValue, 2) : 0;
+
+            var sumaValue = ViewData["SUMA"] as string;
+            var sumaDecimal = !string.IsNullOrEmpty(sumaValue) ? Convert.ToInt32(sumaValue, 2) : 0;
+
+            var multValue = ViewData["MULT"] as string;
+            var multDecimal = !string.IsNullOrEmpty(multValue) ? Convert.ToInt32(multValue, 2) : 0;
+        }
+
+        <tbody>
+            <tr>
+                <td>A</td>
+                <td>@aValue</td>
+                <td>@Convert.ToString(aDecimal, 8)</td>
+                <td>@aDecimal</td>
+                <td>@Convert.ToString(aDecimal, 16).ToUpper()</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>@bValue</td>
+                <td>@Convert.ToString(bDecimal, 8)</td>
+                <td>@bDecimal</td>
+                <td>@Convert.ToString(bDecimal, 16).ToUpper()</td>
+            </tr>
+            <tr>
+                <td>A AND B</td>
+                <td>@andValue</td>
+                <td>@Convert.ToString(andDecimal, 8)</td>
+                <td>@andDecimal</td>
+                <td>@Convert.ToString(andDecimal, 16).ToUpper()</td>
+            </tr>
+            <tr>
+                <td>A OR B</td>
+                <td>@orValue</td>
+                <td>@Convert.ToString(orDecimal, 8)</td>
+                <td>@orDecimal</td>
+                <td>@Convert.ToString(orDecimal, 16).ToUpper()</td>
+            </tr>
+            <tr>
+                <td>A XOR B</td>
+                <td>@xorValue</td>
+                <td>@Convert.ToString(xorDecimal, 8)</td>
+                <td>@xorDecimal</td>
+                <td>@Convert.ToString(xorDecimal, 16).ToUpper()</td>
+            </tr>
+            <tr>
+                <td>A + B</td>
+                <td>@sumaValue</td>
+                <td>@Convert.ToString(sumaDecimal, 8)</td>
+                <td>@sumaDecimal</td>
+                <td>@Convert.ToString(sumaDecimal, 16).ToUpper()</td>
+            </tr>
+            <tr>
+                <td>A • B</td>
+                <td>@multValue</td>
+                <td>@Convert.ToString(multDecimal, 8)</td>
+                <td>@multDecimal</td>
+                <td>@Convert.ToString(multDecimal, 16).ToUpper()</td>
+            </tr>
+        </tbody>
+    </table>
+}

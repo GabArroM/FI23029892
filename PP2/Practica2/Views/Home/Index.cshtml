@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model Practica2.Models.Binario
+
+<h2>Ingrese números binarios</h2>
+
+<form asp-action="BinarioResultado" method="post">
+    <label>A:</label>
+    <input asp-for="A" type="text" class="form-control" />
+
+    <label>B:</label>
+    <input asp-for="B" type="text" class="form-control" />
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+<div id="resultado">
+    @await Html.PartialAsync("_Resultado", Model)
+</div>
+
+</div>

@@ -15,10 +15,16 @@ public class HomeController : Controller
     public IActionResult Index(TheModel model)
     {
         ViewBag.Valid = ModelState.IsValid;
+
         if (ViewBag.Valid)
         {
-            var charArray = model.Phrase!.ToCharArray().ToList();
-            charArray.ForEach(c =>
+            // Cambio aplicado: se eliminan los espacios (' ') a nivel de Character usando LINQ
+            //Ayuda con ChatGPT esta parte.
+            var charArray = model.Phrase!
+                                 .Where(c => !char.IsWhiteSpace(c)) 
+                                 .ToList();
+
+            foreach (var c in charArray)
             {
                 if (!model.Counts!.ContainsKey(c))
                 {
@@ -27,8 +33,9 @@ public class HomeController : Controller
                 model.Counts[c]++;
                 model.Lower += c.ToString().ToLower();
                 model.Upper += c.ToString().ToUpper();
-            });
+            }
         }
+
         return View(model);
     }
 }

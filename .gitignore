@@ -52,3 +52,14 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# --- EF Core: excluir migraciones ---
+**/[Mm]igrations/
+
+# --- Data del proyecto: excluir carpeta data completa (db/csv/tsv) ---
+**/[Dd]ata/**
+
+# --- Bases de datos SQLite fuera de /data  ---
+*.db
+*.db-shm
+*.db-wal
